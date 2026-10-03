@@ -1,0 +1,5 @@
+# lib/ holds git submodules (forge-std, OpenZeppelin) pinned to upstream tags; their public test vectors are not our secrets.
+[extend]
+useDefault = true
+[allowlist]
+paths = ['''(^|/)lib/''', '''node_modules''']
