@@ -15,7 +15,15 @@ contract L29Test is Test {
     address constant WETH = 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2;
 
     function setUp() public {
-        vm.createSelectFork(vm.envOr("MAINNET_RPC_URL", string("https://ethereum-rpc.publicnode.com")));
+        string memory url = vm.envOr("MAINNET_RPC_URL", string("https://ethereum-rpc.publicnode.com"));
+        // Fork a block ~32 behind head: public RPCs are load-balanced, and the very latest block may not
+        // be on every backend yet, while non-archive nodes keep only recent state.
+        bytes memory raw = vm.rpc(url, "eth_blockNumber", "[]"); // big-endian bytes of the quantity
+        uint256 head;
+        for (uint256 i; i < raw.length; i++) {
+            head = (head << 8) | uint8(raw[i]);
+        }
+        vm.createSelectFork(url, head - 32);
     }
 
     function test_ReadRealUSDC() public view {
