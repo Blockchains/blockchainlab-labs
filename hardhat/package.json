@@ -4,9 +4,9 @@
   "description": "Bonus Hardhat lab (Lab H1). Built by Blockchain Lab — https://blockchainlab.com",
   "scripts": { "test": "hardhat test" },
   "devDependencies": {
-    "hardhat": "^2.26.0",
-    "@nomicfoundation/hardhat-ethers": "^3.1.0",
+    "hardhat": "^3.18.1",
+    "@nomicfoundation/hardhat-ethers": "^4.2.0",
     "ethers": "^6.13.4",
-    "chai": "^4.5.0"
+    "chai": "^6.3.0"
   }
 }
