@@ -1,0 +1,96 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Blockchains/.github/main/docs/blocks.schema.json",
+  "schema_version": "1.0",
+  "name": "blockchainlab-labs",
+  "repo": "Blockchains/blockchainlab-labs",
+  "summary": "54 runnable smart-contract labs: 45 Solidity labs with Foundry tests (storage to reentrancy, AMMs, flash loans, proxies, ERC-7201, fuzzing, invariants, mainnet forks), 4 Noir ZK labs, 4 Cairo/Starknet labs and a Hardhat lab. Each lab is a small, tested, importable contract.",
+  "kind": [
+    "contracts",
+    "docs"
+  ],
+  "stability": "stable",
+  "license": "MIT",
+  "entrypoints": [
+    {
+      "type": "solidity",
+      "name": "src/L<NN>_<Name>.sol",
+      "ref": "src/",
+      "install": "forge install Blockchains/blockchainlab-labs",
+      "usage": "import {ConstantProductAMM} from \"blockchainlab-labs/src/L21_ConstantProductAMM.sol\";"
+    },
+    {
+      "type": "file",
+      "name": "noir/",
+      "ref": "noir/Nargo.toml",
+      "usage": "cd noir && nargo test"
+    },
+    {
+      "type": "file",
+      "name": "cairo/",
+      "ref": "cairo/Scarb.toml",
+      "usage": "cd cairo && scarb test"
+    }
+  ],
+  "inputs": [
+    {
+      "name": "lab contract",
+      "type": "Solidity source",
+      "description": "constructor args per lab"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "tested contract patterns",
+      "type": "Solidity/Noir/Cairo"
+    },
+    {
+      "name": "exercises",
+      "type": "Markdown table in README"
+    }
+  ],
+  "deps": [
+    "foundry",
+    "nargo (Noir labs)",
+    "scarb (Cairo labs)",
+    "node (Hardhat lab)"
+  ],
+  "compatible_with": [
+    {
+      "repo": "Blockchains/blockchain-dev-roadmap",
+      "how": "roadmap stages link to these labs"
+    },
+    {
+      "repo": "Blockchains/blockchain-interview-questions",
+      "how": "answers link to labs"
+    },
+    {
+      "repo": "Blockchains/blockchainlab-tools",
+      "how": "labs reference the hash/storage tools"
+    },
+    {
+      "repo": "Blockchains/blockchainlab-starters",
+      "how": "production-style starters for the same stacks"
+    },
+    {
+      "repo": "Blockchains/forge-usd-priced-membership-nft",
+      "how": "combine lab patterns with composed contracts"
+    }
+  ],
+  "tests": {
+    "command": "forge test -vv",
+    "ci": ".github/workflows/ci.yml",
+    "network": true
+  },
+  "env": [
+    {
+      "name": "MAINNET_RPC_URL",
+      "required": false,
+      "purpose": "mainnet fork lab (defaults to https://ethereum-rpc.publicnode.com)"
+    }
+  ],
+  "docs": {
+    "readme": "README.md",
+    "agents": "AGENTS.md",
+    "llms": "llms.txt"
+  }
+}

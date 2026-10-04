@@ -92,6 +92,51 @@ Foundry (forge-std v1.17), Solidity 0.8.28 (Cancun), OpenZeppelin Contracts v5.4
 
 Educational code — not audited, do not deploy to mainnet with real funds. MIT.
 
+<!-- blocks:start -->
+## Use as a building block
+
+> **For AI agents and builders:** read [`AGENTS.md`](AGENTS.md) (setup, commands, structure, rules), [`llms.txt`](llms.txt) (doc map) and the machine-readable [`blocks.json`](blocks.json) ([schema](https://github.com/Blockchains/.github/blob/main/docs/BLOCKS-SCHEMA.md)). How all Blockchains blocks fit together: **[Build with Blocks](https://github.com/Blockchains/.github/blob/main/docs/BUILD-WITH-BLOCKS.md)** · org catalogue: [https://blockchains.github.io/blocks.json](https://blockchains.github.io/blocks.json).
+
+**What it exports**
+
+| Export | Type | Install / access |
+|---|---|---|
+| `src/L<NN>_<Name>.sol` | solidity | `forge install Blockchains/blockchainlab-labs` |
+| `noir/` | file | `cd noir && nargo test` |
+| `cairo/` | file | `cd cairo && scarb test` |
+
+**Minimal example** (compiled and passed `forge test` on 2026-10-04 in a fresh Foundry project)
+
+```solidity
+// forge install Blockchains/blockchainlab-labs
+// remappings.txt:
+//   @openzeppelin/contracts/=lib/blockchainlab-labs/lib/openzeppelin-contracts/contracts/
+//   labs/=lib/blockchainlab-labs/src/
+import {ConstantProductAMM} from "labs/L21_ConstantProductAMM.sol";
+import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+
+ConstantProductAMM amm = new ConstantProductAMM(IERC20(tokenA), IERC20(tokenB));
+// approve both tokens, then:
+amm.addLiquidity(1000e18, 1000e18);
+uint256 out = amm.swap(IERC20(tokenA), 10e18, 0);   // ≈ 9.87e18 after 0.3% fee + price impact
+```
+
+**Inputs → outputs**
+
+- In: `lab contract` (Solidity source) constructor args per lab
+- Out: `tested contract patterns` (Solidity/Noir/Cairo); `exercises` (Markdown table in README)
+
+**Composes with**
+
+- [Blockchains/blockchain-dev-roadmap](https://github.com/Blockchains/blockchain-dev-roadmap): roadmap stages link to these labs
+- [Blockchains/blockchain-interview-questions](https://github.com/Blockchains/blockchain-interview-questions): answers link to labs
+- [Blockchains/blockchainlab-tools](https://github.com/Blockchains/blockchainlab-tools): labs reference the hash/storage tools
+- [Blockchains/blockchainlab-starters](https://github.com/Blockchains/blockchainlab-starters): production-style starters for the same stacks
+- [Blockchains/forge-usd-priced-membership-nft](https://github.com/Blockchains/forge-usd-priced-membership-nft): combine lab patterns with composed contracts
+
+**Versioning & stability:** `stable`. Teaching code: lab file names (`L<NN>_<Name>.sol`) are stable, internals may change to improve clarity. Not audited; do not deploy with real value without review.
+<!-- blocks:end -->
+
 ## Configuration
 
 No keys needed. `MAINNET_RPC_URL` optionally overrides the public RPC (`https://ethereum-rpc.publicnode.com`) used by the mainnet fork lab (`test/L29_MainnetFork.t.sol`).
