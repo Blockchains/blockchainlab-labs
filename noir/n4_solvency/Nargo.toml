@@ -1,0 +1,6 @@
+[package]
+name = "n4_solvency"
+type = "bin"
+authors = ["Blockchain Lab"]
+
+[dependencies]

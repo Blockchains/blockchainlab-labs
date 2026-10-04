@@ -1,0 +1,6 @@
+[package]
+name = "n1_hash_preimage"
+type = "bin"
+authors = ["Blockchain Lab"]
+
+[dependencies]

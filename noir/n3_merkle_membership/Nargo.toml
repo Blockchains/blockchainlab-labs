@@ -1,0 +1,6 @@
+[package]
+name = "n3_merkle_membership"
+type = "bin"
+authors = ["Blockchain Lab"]
+
+[dependencies]

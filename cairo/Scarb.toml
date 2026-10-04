@@ -1,0 +1,10 @@
+[workspace]
+members = ["c1_integers", "c2_ownership", "c3_starknet_token", "c4_poseidon_merkle"]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2024_07"
+
+[workspace.dependencies]
+starknet = "2.20.0"
+cairo_test = "2.20.0"

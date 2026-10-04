@@ -1,0 +1,6 @@
+[package]
+name = "n2_age_check"
+type = "bin"
+authors = ["Blockchain Lab"]
+
+[dependencies]

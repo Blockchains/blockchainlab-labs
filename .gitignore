@@ -5,3 +5,8 @@ hardhat/node_modules/
 hardhat/artifacts/
 hardhat/cache/
 .env
+cairo/target/
+noir/target/
+circom/build/
+circom/node_modules/
+sui/*/build/

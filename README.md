@@ -4,7 +4,7 @@
 
 [![ci](https://github.com/Blockchains/blockchainlab-labs/actions/workflows/ci.yml/badge.svg)](https://github.com/Blockchains/blockchainlab-labs/actions/workflows/ci.yml)
 
-**30 runnable Solidity labs with Foundry tests — from storage basics to reentrancy, flash loans, proxies, ERC-7201, fuzzing, invariants and mainnet forks** — plus a bonus Hardhat lab. Every lab compiles and passes in CI.
+**54 runnable labs — 45 Solidity labs with Foundry tests, 4 Noir zero-knowledge labs and 4 Cairo/Starknet labs — from storage basics to reentrancy, flash loans, proxies, ERC-7201, fuzzing, invariants and mainnet forks** — plus a bonus Hardhat lab. Every lab compiles and passes in CI.
 
 > Built by **Blockchain Lab — [blockchainlab.com](https://blockchainlab.com/?utm_source=github&utm_medium=readme&utm_campaign=blockchainlab-labs)**
 
@@ -69,12 +69,20 @@ cd hardhat && npm ci && npx hardhat test   # bonus Hardhat lab
 | 44 | [YulBasics](src/L44_YulBasics.sol) · [test](test/L44_YulBasics.t.sol) | Inline assembly: sload/sstore, calldata loops, scratch-space hashing | Write `transfer` for an ERC-20 entirely in Yul. | [read](https://blockchainlab.com/learn/concepts/virtual-machine?utm_source=github&utm_medium=readme&utm_campaign=blockchainlab-labs) |
 | 45 | [CircuitBreaker](src/L45_CircuitBreaker.sol) · [test](test/L45_CircuitBreaker.t.sol) | Guardian pause + per-window outflow rate limit | Allow the rate limit to be raised only through the timelock (lab 15). | [read](https://blockchainlab.com/development-lab/smart-contract-security-assurance?utm_source=github&utm_medium=readme&utm_campaign=blockchainlab-labs) |
 | H1 | [Counter (Hardhat)](hardhat/contracts/Counter.sol) · [test](hardhat/test/Counter.test.js) | Same contract as lab 02, tested with Hardhat + ethers + chai | Port lab 04 to Hardhat | [read](https://blockchainlab.com/learn/concepts/smart-contract?utm_source=github&utm_medium=readme&utm_campaign=blockchainlab-labs) |
+| N1 | [Noir: hash preimage](noir/n1_hash_preimage/src/main.nr) | ZK proof of knowledge of a Pedersen preimage | Switch to Poseidon via the noir-lang/poseidon library. | [read](https://blockchainlab.com/learn/concepts/zero-knowledge?utm_source=github&utm_medium=readme&utm_campaign=blockchainlab-labs) |
+| N2 | [Noir: age check](noir/n2_age_check/src/main.nr) | Selective disclosure: prove age ≥ 18 from a committed credential | Add an expiry date to the credential. | [read](https://blockchainlab.com/learn/concepts/zero-knowledge?utm_source=github&utm_medium=readme&utm_campaign=blockchainlab-labs) |
+| N3 | [Noir: Merkle membership](noir/n3_merkle_membership/src/main.nr) | Anonymous allowlist membership + nullifier (Semaphore pattern) | Raise depth to 20 and measure constraint count with `nargo info`. | [read](https://blockchainlab.com/learn/concepts/zero-knowledge?utm_source=github&utm_medium=readme&utm_campaign=blockchainlab-labs) |
+| N4 | [Noir: proof of reserves](noir/n4_solvency/src/main.nr) | Prove committed balances ≥ liabilities without revealing them | Add per-account non-negativity and a Merkle sum tree. | [read](https://blockchainlab.com/learn/concepts/zero-knowledge?utm_source=github&utm_medium=readme&utm_campaign=blockchainlab-labs) |
+| C1 | [Cairo: integers & felts](cairo/c1_integers/src/lib.cairo) | felt252 modular wrap vs panicking uN integers, u256 limbs | Implement checked u256 sqrt. | [read](https://blockchainlab.com/learn/concepts/smart-contract?utm_source=github&utm_medium=readme&utm_campaign=blockchainlab-labs) |
+| C2 | [Cairo: ownership & traits](cairo/c2_ownership/src/lib.cairo) | Linear types, snapshots, arrays, structs, traits | Add a short-position variant with an enum. | [read](https://blockchainlab.com/learn/concepts/smart-contract?utm_source=github&utm_medium=readme&utm_campaign=blockchainlab-labs) |
+| C3 | [Cairo: Starknet token](cairo/c3_starknet_token/src/lib.cairo) | Starknet contract storage, events, dispatcher tests with deploy_syscall | Add approve/transfer_from. | [read](https://blockchainlab.com/learn/concepts/smart-contract?utm_source=github&utm_medium=readme&utm_campaign=blockchainlab-labs) |
+| C4 | [Cairo: Poseidon Merkle](cairo/c4_poseidon_merkle/src/lib.cairo) | STARK-friendly Poseidon hashing and sorted-pair Merkle proofs | Write an airdrop contract that uses `verify`. | [read](https://blockchainlab.com/learn/concepts/smart-contract?utm_source=github&utm_medium=readme&utm_campaign=blockchainlab-labs) |
 
 Each lab = one contract in `src/` and one test in `test/`. Read the test first — it is the spec. Then do the exercise and make your new test pass.
 
 ## Stack
 
-Foundry (forge-std v1.17), Solidity 0.8.28 (Cancun), OpenZeppelin Contracts v5.4.0, Hardhat 2 for the bonus lab. Anchor (Solana) labs are not included yet.
+Foundry (forge-std v1.17), Solidity 0.8.28 (Cancun), OpenZeppelin Contracts v5.4.0, Hardhat 2 for the bonus lab. Noir 1.0.0-rc.2 for ZK labs, Scarb 2.20.1 / Cairo 2.20 for Starknet labs. Run `cd noir && nargo test` or `cd cairo && scarb test`. Sui Move and Anchor (Solana) labs are planned.
 
 ## Where next
 

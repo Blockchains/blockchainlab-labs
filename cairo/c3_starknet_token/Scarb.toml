@@ -1,0 +1,13 @@
+[package]
+name = "c3_starknet_token"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+starknet.workspace = true
+
+[dev-dependencies]
+cairo_test.workspace = true
+
+
+[[target.starknet-contract]]

@@ -1,0 +1,11 @@
+[package]
+name = "c4_poseidon_merkle"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+
+
+[dev-dependencies]
+cairo_test.workspace = true
+

@@ -28,3 +28,23 @@ jobs:
         with: { node-version: 20 }
       - run: npm ci
       - run: npx hardhat test
+  noir:
+    name: Noir ZK labs (N1–N4)
+    runs-on: ubuntu-latest
+    defaults: { run: { working-directory: noir } }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: noir-lang/noirup@v0.1.4
+        with: { toolchain: 1.0.0-rc.2 }
+      - run: nargo fmt --check
+      - run: nargo test
+  cairo:
+    name: Cairo / Starknet labs (C1–C4)
+    runs-on: ubuntu-latest
+    defaults: { run: { working-directory: cairo } }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: software-mansion/setup-scarb@v1
+        with: { scarb-version: "2.20.1" }
+      - run: scarb fmt --check
+      - run: scarb test

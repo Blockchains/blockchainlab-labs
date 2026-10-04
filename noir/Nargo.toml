@@ -1,0 +1,2 @@
+[workspace]
+members = ["n1_hash_preimage", "n2_age_check", "n3_merkle_membership", "n4_solvency"]
