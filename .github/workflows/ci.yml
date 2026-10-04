@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 jobs:
   foundry:
-    name: Foundry labs (01–30)
+    name: Foundry labs (01–45)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
